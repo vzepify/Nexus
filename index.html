@@ -5,4 +5,25 @@
 <section id="features" class="section"><div class="section-head"><p class="eyebrow">Built for your games</p><h2>Everything you need in one launcher.</h2></div><div class="grid"><article><div class="icon">⚡</div><h3>Fast & lightweight</h3><p>Native Windows UI with no WebView2 dependency, keeping the launcher simple and responsive.</p></article><article><div class="icon">◈</div><h3>Discord activity</h3><p>Show friends that you're using Nexus Launcher and switch to game/server activity when you launch a client.</p></article><article><div class="icon">↻</div><h3>Game updates</h3><p>Check GitHub releases and rawfiles for S1X, IW4X, and IW6X directly from Settings.</p></article><article><div class="icon">▣</div><h3>Progress feedback</h3><p>See update status and download progress while files are checked, downloaded, and installed.</p></article><article><div class="icon">⌁</div><h3>Server awareness</h3><p>When available, Discord presence can show the server you're playing on alongside the game.</p></article><article><div class="icon">⚙</div><h3>Simple setup</h3><p>Browse to your game folders, configure the launcher, and launch from one place.</p></article></div></section>
 <section class="games"><div class="section-head"><p class="eyebrow">Supported clients</p><h2>Three games. One launcher.</h2></div><div class="game-grid"><div class="game"><strong>S1X</strong><span>Black Ops 1 client</span></div><div class="game"><strong>IW4X</strong><span>Modern Warfare 2 client</span></div><div class="game"><strong>IW6X</strong><span>Ghosts client</span></div></div></section>
 <section class="download" id="download"><div><p class="eyebrow">Ready to use Nexus?</p><h2>Download the launcher.</h2><p>Grab the latest release and start managing your supported clients from one place.</p></div><a class="primary" href="#download" data-download-link>Download now</a></section>
-</main><footer><span>© 2026 Nexus Launcher</span><span>Built for Windows</span></footer><script>document.querySelectorAll("[data-download-link]").forEach(function(a){a.href=window.NEXUS_DOWNLOAD_URL;});</script></body></html>
+</main><footer><span>© 2026 Nexus Launcher</span><span>Built for Windows</span></footer><script>
+(function () {
+  function applyDownloadUrl() {
+    const configured = (window.NEXUS_DOWNLOAD_URL || "").trim();
+    document.querySelectorAll("[data-download-link]").forEach(function (link) {
+      if (configured) {
+        link.setAttribute("href", configured);
+      } else {
+        link.setAttribute("href", "#download");
+        console.error("Nexus Launcher: NEXUS_DOWNLOAD_URL is empty or missing in config.js");
+      }
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyDownloadUrl);
+  } else {
+    applyDownloadUrl();
+  }
+})();
+</script></body></html>
